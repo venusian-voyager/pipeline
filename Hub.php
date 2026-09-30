@@ -11,7 +11,7 @@ class Hub implements HubContract
     /**
      * The container implementation.
      *
-     * @var \Voyager\Contracts\Vessel\Vessel|null
+     * @var \Voyager\Contracts\Vessel\TheServiceContainer|null
      */
     protected ?Vessel $vessel = null;
 
@@ -25,7 +25,7 @@ class Hub implements HubContract
     /**
      * Create a new Hub instance.
      *
-     * @param  \Voyager\Contracts\Vessel\Vessel|null  $vessel
+     * @param  \Voyager\Contracts\Vessel\TheServiceContainer|null  $vessel
      */
     public function __construct(?Vessel $vessel = null)
     {
@@ -50,7 +50,7 @@ class Hub implements HubContract
      * @param  \Closure  $callback
      * @return void
      */
-    public function pipeline($name, Closure $callback): void
+    public function pipeline(string $name, Closure $callback): void
     {
         $this->pipelines[$name] = $callback;
     }
@@ -62,7 +62,7 @@ class Hub implements HubContract
      * @param  string|null  $pipeline
      * @return mixed
      */
-    public function pipe($object, $pipeline = null): mixed
+    public function pipe(mixed $object, ?string $pipeline = null): mixed
     {
         $pipeline = $pipeline ?: 'default';
 
@@ -74,7 +74,7 @@ class Hub implements HubContract
     /**
      * Get the container instance used by the hub.
      *
-     * @return \Voyager\Contracts\Vessel\Vessel
+     * @return \Voyager\Contracts\Vessel\TheServiceContainer
      */
     public function getContainer(): ?Vessel
     {
@@ -84,7 +84,7 @@ class Hub implements HubContract
     /**
      * Set the container instance used by the hub.
      *
-     * @param  \Voyager\Contracts\Vessel\Vessel  $vessel
+     * @param  \Voyager\Contracts\Vessel\TheServiceContainer  $vessel
      * @return $this
      */
     public function setContainer(Vessel $vessel): static

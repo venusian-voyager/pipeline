@@ -19,7 +19,7 @@ class Pipeline implements PipelineContract
     /**
      * The container implementation.
      *
-     * @var \Voyager\Contracts\Vessel\Vessel|null
+     * @var \Voyager\Contracts\Vessel\TheServiceContainer|null
      */
     protected ?Vessel $vessel = null;
 
@@ -61,7 +61,7 @@ class Pipeline implements PipelineContract
     /**
      * Create a new class instance.
      *
-     * @param  \Voyager\Contracts\Vessel\Vessel|null  $vessel
+     * @param  \Voyager\Contracts\Vessel\TheServiceContainer|null  $vessel
      */
     public function __construct(?Vessel $vessel = null)
     {
@@ -113,7 +113,7 @@ class Pipeline implements PipelineContract
      * @param  string  $method
      * @return $this
      */
-    public function via($method): static
+    public function via(string $method): static
     {
         $this->method = $method;
 
@@ -234,7 +234,7 @@ class Pipeline implements PipelineContract
      * @param  string  $pipe
      * @return array
      */
-    protected function parsePipeString($pipe): array
+    protected function parsePipeString(string $pipe): array
     {
         [$name, $parameters] = array_pad(explode(':', $pipe, 2), 2, null);
 
@@ -263,7 +263,7 @@ class Pipeline implements PipelineContract
      * @param  string|null|\UnitEnum|false  $withinTransaction
      * @return $this
      */
-    public function withinTransaction($withinTransaction = null): static
+    public function withinTransaction(string|UnitEnum|null|false $withinTransaction = null): static
     {
         $this->withinTransaction = $withinTransaction;
 
@@ -273,7 +273,7 @@ class Pipeline implements PipelineContract
     /**
      * Get the container instance.
      *
-     * @return \Voyager\Contracts\Vessel\Vessel
+     * @return \Voyager\Contracts\Vessel\TheServiceContainer
      *
      * @throws \RuntimeException
      */
@@ -289,7 +289,7 @@ class Pipeline implements PipelineContract
     /**
      * Set the container instance.
      *
-     * @param  \Voyager\Contracts\Vessel\Vessel  $vessel
+     * @param  \Voyager\Contracts\Vessel\TheServiceContainer  $vessel
      * @return $this
      */
     public function setContainer(Vessel $vessel): static
